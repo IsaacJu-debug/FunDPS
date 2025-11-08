@@ -64,6 +64,26 @@ python generate_pde.py --config configs/generation/darcy_inverse.yaml
 
 For multi-resolution training, check our paper `Appendix E & G.3`. For multi-resolution inference, check our paper `Appendix G.4` and see configuration file [here](configs/generation/darcy_forward_multi-res.yaml).
 
+<details>
+
+<summary> Full commands for reproduction </summary>
+
+For simplicity, we provide the full commands for reproducing our results in one block. Note that our experiments were run on a NVIDIA RTX 4090 GPU and different hardware may lead to some differences in results.
+
+```shell
+git clone https://github.com/neuraloperator/FunDPS.git
+cd FunDPS
+conda env create -f environment.yml
+conda activate FunDPS
+# In the following step, only torch, torchvision, torchaudio should be installed
+pip install torch==1.12.1+cu113 torchvision==0.13.1+cu113 torchaudio==0.12.1 --extra-index-url https://download.pytorch.org/whl/cu113  
+python utils/download_dataset.py darcy --test
+# Download darcy.pkl from links above.
+python generate_pde.py -c=configs/generation/darcy_forward.yaml --pkl_path=darcy.pkl --batch_size=10
+```
+
+</details>
+
 
 ## Results
 ![Result Table](docs/result.png)
