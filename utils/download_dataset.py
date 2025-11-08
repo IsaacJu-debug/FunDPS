@@ -115,10 +115,8 @@ def main():
     print("Finished processing all requested files.")
 
     # Remove cache
-    flag_remove_cache = input("Do you want to remove the cache? (y/n): ").strip().lower()
-    if flag_remove_cache == "y":
-        shutil.rmtree(Path(args.output_dir) / ".cache")
-        print("Cache directory removed.")
+    shutil.rmtree(Path(args.output_dir) / ".cache")
+    print("Cache directory removed.")
 
 
 if __name__ == "__main__":
